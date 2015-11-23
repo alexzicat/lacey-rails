@@ -1,7 +1,8 @@
-require "lacey/rails/version"
+require 'lacey/rails/version'
 
 module Lacey
   module Rails
-    # Your code goes here...
+    class Engine < ::Rails::Engine
+    end
   end
 end
