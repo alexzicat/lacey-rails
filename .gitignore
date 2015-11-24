@@ -3,6 +3,7 @@
 /Gemfile.lock
 /_yardoc/
 /coverage/
+/.idea/workspace.xml
 /doc/
 /pkg/
 /spec/reports/
