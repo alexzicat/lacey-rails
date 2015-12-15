@@ -16,7 +16,7 @@ App.prototype.register_module = function (module_name, module) {
     }
     this.modules.push(module_name);
     this[module_name] = (function () {
-        var create, get_instance, instance;
+        var initialize, get_instance, instance;
         instance = null;
         get_instance = function () {
             if (instance == null) {
@@ -24,17 +24,16 @@ App.prototype.register_module = function (module_name, module) {
             }
             return instance;
         };
-        create = function () {
-            if (instance != null) {
-                throw 'DuplicateModuleError - this module has been already created';
+        initialize = function () {
+            if (instance == null) {
+                var module = get_instance();
+                if (typeof module.init == 'function')
+                    module.init()
             }
-            var module = get_instance();
-            if (typeof module.init == 'function')
-                module.init()
             return module;
         };
         return {
-            create: create,
+            initialize: initialize,
             get_instance: get_instance
         };
     })();
